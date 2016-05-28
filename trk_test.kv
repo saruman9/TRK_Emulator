@@ -1,0 +1,244 @@
+<MainScreen>:
+
+    #:set tFuel_98 '98'
+    #:set tFuel_95 '95'
+    #:set tFuel_92 '92'
+    #:set tFuel_dt 'ДТ'
+    #:set tTrk_1 'Колонка 1'
+    #:set tTrk_2 'Колонка 2'
+    FloatLayout:
+
+        canvas:
+            Rectangle:
+                pos: self.center_x, 0
+                size: 3, self.height
+
+        Button:
+            text: 'Exit'
+            font_size: self.width * .3
+            size_hint: .07, .07
+            pos_hint: {'x': .9, 'y': .9}
+            on_press: exit()
+
+        Label:
+            font_size: self.width * .03
+            center_x: self.width * .25
+            center_y: self.height * .15
+            text: tTrk_1
+
+        Label:
+            font_size: self.width * .03
+            center_x: self.width * .75
+            center_y: self.height * .15
+            text: tTrk_2
+
+        Image:
+            size: self.texture_size
+            source: 'benzokolonka.gif'
+            center_x: self.width * .375
+            center_y: self.height * .625
+
+        Image:
+            size: self.texture_size
+            source: 'benzokolonka.gif'
+            #pos_hint: {'x': .875, 'y': .625}
+            center_x: self.width * .875
+            center_y: self.height * .625
+
+        Button:
+            id: bFuel_98_1
+            #center_x: self.center_x
+            #center_y: self.center_y
+            font_size: self.width * .2
+            pos_hint: {'x': .125, 'y': .700}
+            size_hint: .10, .10
+            on_press: root.change_fuel(1, '98'); root.manager.current = 'info_screen'
+            text: tFuel_98
+
+        Button:
+            id: bFuel_95_1
+            font_size: self.width * .2
+            pos_hint: {'x': .125, 'y': .600}
+            size_hint: .10, .10
+            on_press: root.change_fuel(1, '95'); root.manager.current = 'info_screen'
+            text: tFuel_95
+
+        Button:
+            id: bFuel_92_1
+            font_size: self.width * .2
+            pos_hint: {'x': .125, 'y': .500}
+            size_hint: .10, .10
+            on_press: root.change_fuel(1, '92'); root.manager.current = 'info_screen'
+            text: tFuel_92
+
+        Button:
+            id: bFuel_dt_1
+            font_size: self.width * .2
+            pos_hint: {'x': .125, 'y': .400}
+            size_hint: .10, .10
+            on_press: root.change_fuel(1, 'dt'); root.manager.current = 'info_screen'
+            text: tFuel_dt
+
+        Button:
+            id: bFuel_98_2
+            #center_x: self.center_x
+            #center_y: self.center_y
+            font_size: self.width * .2
+            pos_hint: {'x': .625, 'y': .700}
+            size_hint: .10, .10
+            on_press: root.change_fuel(2, '98'); root.manager.current = 'info_screen'
+            text: tFuel_98
+
+        Button:
+            id: bFuel_95_2
+            font_size: self.width * .2
+            pos_hint: {'x': .625, 'y': .600}
+            size_hint: .10, .10
+            on_press: root.change_fuel(2, '95'); root.manager.current = 'info_screen'
+            text: tFuel_95
+
+        Button:
+            id: bFuel_92_2
+            font_size: self.width * .2
+            pos_hint: {'x': .625, 'y': .500}
+            size_hint: .10, .10
+            on_press: root.change_fuel(2, '92'); root.manager.current = 'info_screen'
+            text: tFuel_92
+
+        Button:
+            id: bFuel_dt_2
+            font_size: self.width * .2
+            pos_hint: {'x': .625, 'y': .400}
+            size_hint: .10, .10
+            on_press: root.change_fuel(2, 'dt'); root.manager.current = 'info_screen'
+            text: tFuel_dt
+
+
+<InfoScreen>:
+
+
+    FloatLayout:
+
+        Label:
+            id: lCaption
+            text: 'root.label_caption'
+            center_x: self.width * .5
+            center_y: self.height * .9
+            font_size: self.width * .03
+
+       Label:
+            id: lType
+            text: 'Type'
+            center_x: self.width * .5
+            center_y: self.height * .8
+            font_size: self.width * .03
+
+        Button:
+            text: 'Go Home'
+            font_size: self.width * .2
+            size_hint: .08, .08
+            pos_hint: {'x': .9, 'y': .9}
+            on_press: root.manager.current = 'main_screen'
+
+        Label:
+            text: 'Резервуар'
+            font_size: self.width * .020
+            center_x: self.width * .125
+            center_y: self.height * .625
+
+        ProgressBar:
+            id: pbVolume
+            size_hint: .6, .6
+            pos_hint: {'x': .245, 'y': .325}
+            max: 1000
+            value: 750
+
+        Label:
+            id: lCapacity
+            text: '750'
+            center_x: self.width * .900
+            center_y: self.height * .625
+            font_size: self.width * .025
+
+        Label:
+            text: 'Стоимость'
+            font_size: self.width * .020
+            center_x: self.width * .125
+            center_y: self.height * .375
+
+        Label:
+            id: lPrice
+            text: '33.54'
+            center_x: self.width * .30
+            center_y: self.height * .375
+            font_size: self.width * .025
+
+        Button:
+            id: fueling
+            font_size: self.width * .15
+            pos_hint: {'x': .42, 'y': .15}
+            size_hint: .2, .1
+            text: 'Заправить'
+            on_press: root.manager.current = 'fueling_screen'
+
+<FuelingScreen>:
+
+    FloatLayout:
+
+        Label:
+            id: lCaption
+            text: 'Caption'
+            center_x: self.width * .5
+            center_y: self.height * .9
+            font_size: self.width * .03
+
+        Label:
+            id: lType
+            text: 'Type'
+            center_x: self.width * .5
+            center_y: self.height * .8
+            font_size: self.width * .03
+
+        Button:
+            text: 'Go Home'
+            font_size: self.width * .2
+           size_hint: .08, .08
+           pos_hint: {'x': .9, 'y': .9}
+           on_press: root.manager.current = 'main_screen'
+
+        Label:
+           text: 'Литры'
+            font_size: self.width * .020
+            center_x: self.width * .125
+            center_y: self.height * .625
+
+        VolumeInput:
+            id: tVolume
+            input_type: 'number'
+            text: '0'
+            size_hint: .08, .05
+            pos_hint: {'x': .245, 'y': .600}
+            font_size: self.width * .20
+
+        Label:
+            text: 'Рубли'
+            font_size: self.width * .020
+            center_x: self.width * .125
+            center_y: self.height * .375
+
+        VolumeInput:
+            id: tPrice
+            input_type: 'number'
+            text: '0'
+            size_hint: .08, .05
+            pos_hint: {'x': .245, 'y': .350}
+            font_size: self.width * .20
+
+        Button:
+            id: fueling
+            font_size: self.width * .15
+            pos_hint: {'x': .42, 'y': .15}
+            size_hint: .2, .1
+            text: 'Заправить'
+            on_press: root.manager.current = 'fueling_screen'
+
